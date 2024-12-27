@@ -1,0 +1,11 @@
+[init]
+	defaultBranch = main
+[user]
+	email = 108910965+T888R@users.noreply.github.com
+	name = T8
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/t8/.local/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/t8/.local/bin/gh auth git-credential
