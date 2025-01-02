@@ -23,14 +23,9 @@ plug "lukechilds/zsh-nvm"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/go/bin
 
 export PATH=$PATH:$HOME/.local/bin
 
 alias air='~/go/bin/air'
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-export PATH="/home/t8/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/home/t8/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+eval "$(starship init zsh)"
