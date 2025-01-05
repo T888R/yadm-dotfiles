@@ -1,4 +1,4 @@
-### Dotfiles configured with YADM
+# Dotfiles configured with YADM
 
 ## Arch install settings
 
@@ -56,15 +56,15 @@ git clone --depth=1 https://github.com/adi1090x/rofi.git
 
 ## Framework specific fixes
 
-# /etc/default/grub changes
+### /etc/default/grub changes
 This improves battery life
 `GRUB_CMD_LINUX_DEFAULT="nvme.noacpi=1"`
 
-# /etc/modprobe.d file to be added
+### /etc/modprobe.d file to be added
 - blacklist-hid.conf
     - blacklist hid_sensor_hub
 
-# Thermal controls
+### Thermal controls
 `sudo pacman -S thermald`
 `sudo systemctl enable thermald.service`
 
@@ -76,21 +76,21 @@ Use powerprofilesctl to list all the available profiles and use set to choose it
 
 ## Setup for my eGPU
 
-# /etc/mkinitcpio.conf changes
+### /etc/mkinitcpio.conf changes
 `MODULES=(btrfs thunderbolt nvidia nvidia_modeset nvidia_uvm nvidia_drm)`
 
-# /etc/default/grub changes
+### /etc/default/grub changes
 `GRUB_CMDLINE_LINUX_DEFAULT="nvidia.NVreg_OpenRmEnableUnsupportedGpus=1 nvidia-drm.modeset=1"`
 
 May require the following changes to LINUX_DEFAULT as well but unsure: 
 `"intel_iommu=on nvidia-drm.fbdev=1 acpi_osi=!Windows 2020 acpi_cpufreq=performance"`
 
-# /etc/modeprobe.d file to be added
+### /etc/modeprobe.d file to be added
 - blacklist-nouveau.conf
     - blacklist nouveau
     - options nouveau modeset=0
 
-# Installed programs
+### Installed programs
 - nvidia-dkms (Make sure to include pacman hook!)
 - nvidia-prime
 - nvidia-prime-select-git
@@ -99,7 +99,7 @@ May require the following changes to LINUX_DEFAULT as well but unsure:
 
 - If eDP isn't showing up, it might need to be enabled via Arandr
 
-# Run included egpu-switcher executable to generate xorg.conf
+### Run included egpu-switcher executable to generate xorg.conf
 
 `sudo cp .config/scripts/egpu-switcher /opt/egpu-switcher
 sudo chmod 755 /opt/egpu-switcher
