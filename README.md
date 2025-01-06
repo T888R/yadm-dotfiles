@@ -24,9 +24,9 @@
     - **Greeter:** Ly
 
 ## Install yadm
-`sudo pacman -S yadm
-yadm clone https://github.com/T888R/yadm-dotfiles
-yadm decrypt`
+`sudo pacman -S yadm`
+`yadm clone https://github.com/T888R/yadm-dotfiles`
+`yadm decrypt`
 
 ## Fonts
 - I use FiraCode and MonoLisa for my fonts placed in .local/share/fonts 
