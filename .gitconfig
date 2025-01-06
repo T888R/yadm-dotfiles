@@ -9,3 +9,5 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/home/t8/.local/bin/gh auth git-credential
+; [credential]
+; 	credentialStore = gpg

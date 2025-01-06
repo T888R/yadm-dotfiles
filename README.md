@@ -1,6 +1,32 @@
 # Dotfiles configured with YADM
 
 ## Arch install settings
+- **Language:** English
+- **Mirrors:** United States
+- **Locales:** Default
+- **Disc Configuration:** I prefer to just the entire disk
+- **Bootloader:** GRUB
+- **Unified Kernel Images:** False
+- **Swap:** True
+- **Host Name:** t8
+- **Root Password:**
+- **User Account:** Make a super user
+- **Audio:** Pipewire
+- **Kernels:** linux-zen
+- **Additional Packages:** 
+- **Network Configuration:** Network Manager
+- **Timezone:** US/Mountain
+- **Automatic Time Sync (NTP):** True
+- **Optional Repositories:** Blank
+- **Profile:**
+    - **Destkop:** i3
+    - **Graphics Driver:** I opted for the NVIDIA Proprietary but next installation I will try the open ones
+    - **Greeter:** Ly
+
+## Install yadm
+`sudo pacman -S yadm
+yadm clone https://github.com/T888R/yadm-dotfiles
+yadm decrypt`
 
 ## Fonts
 - I use FiraCode and MonoLisa for my fonts placed in .local/share/fonts 
@@ -91,7 +117,8 @@ May require the following changes to LINUX_DEFAULT as well but unsure:
     - options nouveau modeset=0
 
 ### Installed programs
-- nvidia-dkms (Make sure to include pacman hook!)
+- linux-zen-headers
+- nvidia-dkms (Make sure to include pacman hook! This is needed for the Zen kernel)
 - nvidia-prime
 - nvidia-prime-select-git
 - nvidia-setting
