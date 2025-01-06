@@ -91,7 +91,7 @@ This improves battery life
 
 ### /etc/modprobe.d file to be added
 - blacklist-hid.conf
-    - blacklist hid_sensor_hub
+`blacklist hid_sensor_hub`
 
 ### Thermal controls
 
