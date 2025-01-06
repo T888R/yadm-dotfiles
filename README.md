@@ -128,7 +128,9 @@ May require the following changes to LINUX_DEFAULT as well but unsure:
 
 ### Run included egpu-switcher executable to generate xorg.conf
 
-`sudo cp .config/scripts/egpu-switcher /opt/egpu-switcher`
-`sudo chmod 755 /opt/egpu-switcher`
-`sudo ln -s /opt/egpu-switcher /usr/bin/egpu-switcher`
-`sudo egpu-switcher enable`
+```
+sudo cp .config/scripts/egpu-switcher /opt/egpu-switcher
+sudo chmod 755 /opt/egpu-switcher
+sudo ln -s /opt/egpu-switcher /usr/bin/egpu-switcher
+sudo egpu-switcher enable
+```
