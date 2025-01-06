@@ -94,14 +94,16 @@ This improves battery life
     - blacklist hid_sensor_hub
 
 ### Thermal controls
-`sudo pacman -S thermald`
-`sudo systemctl enable thermald.service`
 
-`sudo pacman -S power-profiles-daemon`
+```
+sudo pacman -S thermald
+sudo systemctl enable thermald.service
+yay fw-ectool-git
+yay framework-system-git
+sudo pacman -S power-profiles-daemon
+```
+
 Use powerprofilesctl to list all the available profiles and use set to choose it
-
-`yay fw-ectool-git`
-`yay framework-system-git`
 
 ## Setup for my eGPU
 
