@@ -118,8 +118,11 @@ May require the following changes to LINUX_DEFAULT as well but unsure:
 
 ### /etc/modeprobe.d file to be added
 - blacklist-nouveau.conf
-    - blacklist nouveau
-    - options nouveau modeset=0
+
+```
+blacklist nouveau
+options nouveau modeset=0
+```
 
 ### Installed programs
 - linux-zen-headers
