@@ -43,15 +43,25 @@ exec --no-startup-id xss-lock -- ~/.config/scripts/lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+exec --no-startup-id blueman-applet
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+10 i3blocks 
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
 
+# playerctl functionality
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Commented out pulseaudio config
 # bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
 # bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 # bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # increase screen brightness
@@ -219,17 +229,20 @@ exec_always --no-startup-id picom -b --config ~/.config/picom.conf
 
 # Set wallpaper
 # exec --no-startup-id nitrogen --restore
-exec_always feh --bg-fill ~/.config/i3/canvas_by_roytanck_blue.jpg
+exec_always feh --bg-fill ~/.config/wallpapers/canvas_by_roytanck_blue.jpg
 
 # Set scaling of multiple monitors
 # exec xrandr --output HDMI-0 --auto --right-of eDP-1-1 old monitor setting when using HDMI
-exec_always xrandr --output eDP-1-1 --mode 2256x1504
-exec_always --no-startup-id sleep 1; xrandr --output DP-0 --mode 2560x1440 --rate 180.00 --right-of eDP-1-1
+exec_always xrandr --output eDP-1 --mode 2256x1504
+exec_always --no-startup-id sleep 1; xrandr --output DisplayPort-1-4 --mode 2560x1440 --rate 180.00 --right-of eDP-1
 
 ## Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
 bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+
+# Easier keybind for flameshot screenshot
+bindsym $mod+p exec --no-startup-id flameshot gui
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
@@ -240,10 +253,22 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 bindsym $mod+Shift+period exec systemctl suspend
 
 # KDE startup
-exec --no-startup-id /usr/lib/kdeconnectd
+exec_always --no-startup-id /usr/lib/kdeconnectd
 
 # Add volume icon to bar
 exec --no-startup-id volumeicon
 
 # Add tap to click prop
 exec --no-startup-id xinput set-prop "PIXA3854:00 093A:0274 Touchpad" "libinput Tapping Enabled" 1
+
+# Scratchpad configuration
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+
+# Show the sup-mail scratchpad window, if any.
+bindsym $mod+Shift+s [title="^Sup ::"] scratchpad show

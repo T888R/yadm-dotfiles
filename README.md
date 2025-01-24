@@ -1,6 +1,7 @@
 # Dotfiles configured with YADM
 
 ## Arch install settings
+
 - **Language:** English
 - **Mirrors:** United States
 - **Locales:** Default
@@ -13,15 +14,15 @@
 - **User Account:** Make a super user
 - **Audio:** Pipewire
 - **Kernels:** linux-zen
-- **Additional Packages:** 
+- **Additional Packages:**
 - **Network Configuration:** Network Manager
 - **Timezone:** US/Mountain
 - **Automatic Time Sync (NTP):** True
 - **Optional Repositories:** Blank
 - **Profile:**
-    - **Destkop:** i3
-    - **Graphics Driver:** I opted for the NVIDIA Proprietary but next installation I will try the open ones
-    - **Greeter:** Ly
+  - **Destkop:** i3
+  - **Graphics Driver:** I opted for the NVIDIA Proprietary but next installation I will try the open ones
+  - **Greeter:** Ly
 
 ## Install yadm
 
@@ -32,21 +33,26 @@ yadm decrypt
 ```
 
 ## Fonts
-- I use FiraCode and MonoLisa for my fonts placed in .local/share/fonts 
-(but not MonoLisa since it is a paid font)
+
+- I use FiraCode and MonoLisa for my fonts placed in .local/share/fonts
+  (but not MonoLisa since it is a paid font)
 
 ## Shell
+
 - Change to zsh
-`chsh -s /bin/zsh`
+  `chsh -s /bin/zsh`
 - Kitty is my terminal of choice
 
 ## General programs
+
 - xrandr
-- paru (aliased as yay)
+- yay
 - ffmpeg
 - legcord (Discord alternative that works with my interface and Pipewire)
+- (Discord sometimes works)
 
 ## Programming related pacakges
+
 - ffmpeg
 - sqlite3
 - golang
@@ -54,6 +60,7 @@ yadm decrypt
 - python3
 
 ## Programs needed for i3
+
 - i3, i3lock-color
 - bluez, bluez-utils, bluetoothctl
 - NetworkManager
@@ -64,34 +71,41 @@ yadm decrypt
 - rofi
 
 ## Firefox configurations
+
 - Tampermonkey (Tampermonkey gist uploaded)
 - Vimium
 - uBlock Origin
 - Firefox Color
 
 ## Rofi configuration
-- Clone adi1090x's themes 
+
+- Clone adi1090x's themes
+
 ```
 git clone --depth=1 https://github.com/adi1090x/rofi.git
 ```
 
 ## Audio configuration programs
+
 - Helvum
 - pwvucontrol
 - spotify
 
 ## Neovim
+
 - ripgrep (Needed to make Neovim project grep work)
 
 ## Framework specific fixes
 
 ### /etc/default/grub changes
+
 This improves battery life
 `GRUB_CMD_LINUX_DEFAULT="nvme.noacpi=1"`
 
 ### /etc/modprobe.d file to be added
+
 - blacklist-hid.conf
-    - `blacklist hid_sensor_hub`
+  - `blacklist hid_sensor_hub`
 
 ### Thermal controls
 
@@ -105,18 +119,21 @@ sudo pacman -S power-profiles-daemon
 
 Use powerprofilesctl to list all the available profiles and use set to choose it
 
-## Setup for my eGPU
+## Setup for my eGPU (This is deprecated due to switching to a NVIDIA card)
 
 ### /etc/mkinitcpio.conf changes
+
 `MODULES=(btrfs thunderbolt nvidia nvidia_modeset nvidia_uvm nvidia_drm)`
 
 ### /etc/default/grub changes
+
 `GRUB_CMDLINE_LINUX_DEFAULT="nvidia.NVreg_OpenRmEnableUnsupportedGpus=1 nvidia-drm.modeset=1"`
 
-May require the following changes to LINUX_DEFAULT as well but unsure: 
+May require the following changes to LINUX_DEFAULT as well but unsure:
 `"intel_iommu=on nvidia-drm.fbdev=1 acpi_osi=!Windows 2020 acpi_cpufreq=performance"`
 
 ### /etc/modeprobe.d file to be added
+
 - blacklist-nouveau.conf
 
 ```
@@ -125,6 +142,7 @@ options nouveau modeset=0
 ```
 
 ### Installed programs
+
 - linux-zen-headers
 - nvidia-dkms (Make sure to include pacman hook! This is needed for the Zen kernel)
 - nvidia-prime
