@@ -1,5 +1,3 @@
-# Dotfiles configured with YADM
-
 ## Arch install settings
 
 - **Language:** English
@@ -21,7 +19,7 @@
 - **Optional Repositories:** Blank
 - **Profile:**
   - **Destkop:** i3
-  - **Graphics Driver:** I opted for the NVIDIA Proprietary but next installation I will try the open ones
+  - **Graphics Driver:** I am using an AMD GPU so I choose that
   - **Greeter:** Ly
 
 ## Install yadm
@@ -119,7 +117,7 @@ sudo pacman -S power-profiles-daemon
 
 Use powerprofilesctl to list all the available profiles and use set to choose it
 
-## Setup for my eGPU (This is deprecated due to switching to a NVIDIA card)
+## Setup for my eGPU (This is deprecated due to switching to an AMD card)
 
 ### /etc/mkinitcpio.conf changes
 
