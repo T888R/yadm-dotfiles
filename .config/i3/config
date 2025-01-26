@@ -233,8 +233,10 @@ exec_always feh --bg-fill ~/.config/wallpapers/canvas_by_roytanck_blue.jpg
 
 # Set scaling of multiple monitors
 # exec xrandr --output HDMI-0 --auto --right-of eDP-1-1 old monitor setting when using HDMI
-exec_always xrandr --output eDP-1 --mode 2256x1504
-exec_always --no-startup-id sleep 1; xrandr --output DisplayPort-1-4 --mode 2560x1440 --rate 180.00 --right-of eDP-1
+# exec_always xrandr --output eDP-1 --mode 2256x1504
+exec_always xrandr --output eDP-1-1 --mode 2256x1504
+# exec_always --no-startup-id sleep 1; xrandr --output DisplayPort-1-4 --mode 2560x1440 --rate 180.00 --right-of eDP-1
+exec_always --no-startup-id sleep 1; xrandr --output DisplayPort-5 --mode 2560x1440 --rate 180.00 --right-of eDP-1-1
 
 ## Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"

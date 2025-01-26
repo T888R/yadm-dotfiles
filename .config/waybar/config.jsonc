@@ -99,7 +99,7 @@
   },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%b %d(%H:%M) 󰃰}",
+    "format": "{:%b %d(%H:%M)}",
   },
   "cpu": {
     "format": "{usage}% ",
@@ -189,6 +189,7 @@
       "reboot": "reboot",
       "suspend": "systemctl suspend",
       "hibernate": "systemctl hibernate",
+      "logout": "hyprctl dispatch exit",
     },
   },
 }
