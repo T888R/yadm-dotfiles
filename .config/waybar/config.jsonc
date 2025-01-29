@@ -99,7 +99,7 @@
   },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%b %d(%H:%M)}",
+    "format": "{:%b %d (%I:%M %p)}",
   },
   "cpu": {
     "format": "{usage}% ",
@@ -166,6 +166,7 @@
       "default": ["", "", ""],
     },
     "on-click": "pavucontrol",
+    "on-update": "update",
   },
   "custom/media": {
     "format": "{icon} {text}",
@@ -185,7 +186,7 @@
     "menu": "on-click",
     "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
     "menu-actions": {
-      "shutdown": "shutdown",
+      "shutdown": "systemctl poweroff",
       "reboot": "reboot",
       "suspend": "systemctl suspend",
       "hibernate": "systemctl hibernate",
