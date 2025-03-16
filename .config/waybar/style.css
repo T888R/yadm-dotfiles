@@ -1,7 +1,7 @@
 * {
   /* `otf-font-awesome` and SpaceMono Nerd Font are required to be installed for icons */
-  font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial,
-    sans-serif;
+  font-family:
+    "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
   font-size: 15px;
   transition: background-color 0.3s ease-out;
 }
@@ -10,7 +10,7 @@ window#waybar {
   background: rgba(26, 27, 38, 0.75);
   color: #c0caf5;
   font-family:
-    SpaceMono Nerd Font,
+    FiraCode Nerd Font,
     feather;
   transition: background-color 0.5s;
 }

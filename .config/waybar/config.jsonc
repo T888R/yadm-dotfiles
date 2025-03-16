@@ -17,7 +17,7 @@
     "memory",
     "temperature",
     "backlight",
-    "keyboard-state",
+    // "keyboard-state",
     "battery",
     "battery#bat2",
     "clock",
@@ -98,7 +98,7 @@
     "spacing": 10,
   },
   "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt> ",
     "format": "{:%b %d (%I:%M %p)}",
   },
   "cpu": {
