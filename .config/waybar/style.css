@@ -29,7 +29,10 @@ window#waybar {
   padding: 0 10px;
 }
 
-#clock,
+#clock {
+  padding: 0 10px;
+  margin-top: 7px;
+}
 #battery,
 #cpu,
 #memory,
