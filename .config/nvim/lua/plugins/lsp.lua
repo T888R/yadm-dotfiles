@@ -1,112 +1,85 @@
 return {
-    {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v3.x",
-        lazy = true,
-        config = false,
-        init = function()
-            vim.g.lsp_zero_extend_cmp = 0
-            vim.g.lsp_zero_extend_lspconfig = 0
-        end
-    },
-    {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-        dependencies = {
-            {
-                "L3MON4D3/LuaSnip",
-                dependencies = {
-                    "saadparwaiz1/cmp_luasnip",
-                    {
-                        "r5n-dev/vscode-react-javascript-snippets",
-                        build = "yarn install --frozen-lockfile && yarn compile"
-                    }
-                }
-            }
-        },
-        config = function()
-            local lsp_zero = require("lsp-zero")
-            lsp_zero.extend_cmp()
+	{
+		"saghen/blink.cmp",
+		dependencies = "rafamadriz/friendly-snippets",
+		version = "*",
+		opts = {
+			keymap = { preset = "default" },
+			appearance = {
+				use_nvim_cmp_as_default = true,
+				nerd_font_variant = "mono",
+			},
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer" },
+			},
+		},
+		opts_extend = { "sources.default" },
+	},
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = { "saghen/blink.cmp", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+		config = function()
+			require("mason").setup()
+			require("mason-lspconfig").setup()
+			vim.diagnostic.config({
+				virtual_text = true,
+				signs = true,
+				underline = true,
+				update_in_insert = false,
+				float = {
+					border = "rounded",
+					source = "always",
+					header = "",
+					prefix = "",
+				},
+			})
 
-            require('luasnip.loaders.from_vscode').lazy_load()
+			vim.api.nvim_create_autocmd("CursorHold", {
+				callback = function()
+					vim.diagnostic.open_float(nil, { focus = false })
+				end,
+			})
 
-            local cmp = require("cmp")
-            cmp.setup({
-                sources = {
-                    { name = "luasnip",  priority = 10 },
-                    { name = "nvim_lsp", priority = 9 }
-                },
-                preselect = 'item',
-                completion = {
-                    completeopt = 'menu,menuone,noinsert'
-                }
-            })
-        end
-    },
-    {
-        "williamboman/mason.nvim",
-        lazy = false,
-        config = true
-    },
-    {
-        "neovim/nvim-lspconfig",
-        cmd = { "LspInfo", "LspInstall", "LspStart" },
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "williamboman/mason-lspconfig.nvim"
-        },
-        config = function()
-            local lsp_zero = require("lsp-zero")
-            lsp_zero.extend_lspconfig()
 
-            lsp_zero.on_attach(function(_, bufnr)
-                lsp_zero.default_keymaps({
-                    buffer = bufnr,
-                    exclude = { "f" }
-                })
-            end)
-
-            require("mason-lspconfig").setup({
-                handlers = {
-                    lsp_zero.default_setup
-                }
-            })
-        end
-    },
-    {
-        "stevearc/conform.nvim",
-        event = { "BufWritePre" },
-        cmd = { "ConformInfo" },
-        keys = {
-            {
-                "<leader>f",
-                function()
-                    require("conform").format({ async = true, lsp_fallback = true, quiet = true })
-                end
-            }
-        },
-        opts = {
-            formatters_by_ft = {
-                javascript = { "prettierd", "prettier" },
-                javascriptreact = { "prettierd", "prettier" },
-                typescript = { "prettierd", "prettier" },
-                typescriptreact = { "prettierd", "prettier" },
-                vue = { "prettierd", "prettier" },
-                css = { "prettierd", "prettier" },
-                scss = { "prettierd", "prettier" },
-                html = { "prettierd", "prettier" },
-                json = { "prettierd", "prettier" },
-                jsonc = { "prettierd", "prettier" },
-                yaml = { "prettierd", "prettier" },
-                markdown = { "prettierd", "prettier" },
-                graphql = { "prettierd", "prettier" },
-                astro = { "prettier" },
-                svelte = { "prettier" },
-                go = { "gopls" }
-
-            },
-            format_on_save = { timeout_ms = 3000, lsp_fallback = true, quiet = true }
-        }
-    }
+			require("mason-lspconfig").setup_handlers({
+				function(server_name)
+					require("lspconfig")[server_name].setup({})
+				end,
+			})
+		end,
+	},
+	{
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		keys = {
+			{
+				"<leader>f",
+				function()
+					require("conform").format({ async = true, lsp_fallback = true, quiet = true })
+				end,
+			},
+		},
+		opts = {
+			formatters_by_ft = {
+				javascript = { "prettierd", "prettier", stop_after_first = true },
+				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+				typescript = { "prettierd", "prettier", stop_after_first = true },
+				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+				vue = { "prettierd", "prettier", stop_after_first = true },
+				css = { "prettierd", "prettier", stop_after_first = true },
+				scss = { "prettierd", "prettier", stop_after_first = true },
+				html = { "prettierd", "prettier", stop_after_first = true },
+				json = { "prettierd", "prettier", stop_after_first = true },
+				jsonc = { "prettierd", "prettier", stop_after_first = true },
+				yaml = { "prettierd", "prettier", stop_after_first = true },
+				markdown = { "prettierd", "prettier", stop_after_first = true },
+				graphql = { "prettierd", "prettier", stop_after_first = true },
+				astro = { "prettier" },
+				svelte = { "prettier" },
+				go = { "gofumpt" },
+			},
+			format_on_save = { timeout_ms = 3000, lsp_fallback = true, quiet = true },
+		},
+	},
 }

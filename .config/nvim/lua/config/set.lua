@@ -27,10 +27,14 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 
+-- Enables and configures undofile
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+
 -- Enables true color support
 vim.opt.termguicolors = true
 
--- Buts a dark line on the 80th character
+-- Buts a dark line on the 100th character
 vim.opt.colorcolumn = "100"
 
 -- Highlights the line the cursor is on
@@ -54,3 +58,7 @@ vim.g.instant_username = "t8r"
 -- Stop netrw from running
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- Shows search as you're typing not after
+vim.opt.incsearch = true
+vim.opt.hlsearch = false
