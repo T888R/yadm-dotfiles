@@ -26,6 +26,8 @@ export PATH=$PATH:$HOME/go/bin
 
 export PATH=$PATH:$HOME/.local/bin
 
+export TERMINAL="kitty"
+
 alias air='~/go/bin/air'
 
 eval "$(starship init zsh)"
